@@ -1,7 +1,7 @@
 import { Role } from '../auth.enum'
 
 export interface TokenPayload {
-  userId: number
+  userID: number
   role: Role
   name: string
 }

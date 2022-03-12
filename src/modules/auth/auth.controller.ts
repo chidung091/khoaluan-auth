@@ -26,7 +26,7 @@ export class AuthController {
   async logIn(@Req() req) {
     const name = await this.authService.getName(req.user.userID, req.user.role)
     const user: ResponseAuthDto = {
-      userId: req.user.userID,
+      userID: req.user.userID,
       token: this.authService.getJWTToken(req.user.userID, req.user.role, name),
       role: req.user.role,
     }

@@ -7,7 +7,7 @@ import { MICROSERVICE_HOST } from './config/secrets'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
-  app.setGlobalPrefix('/api/')
+  app.setGlobalPrefix('/api/auth')
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,
@@ -40,7 +40,7 @@ function setUpSwagger(app: INestApplication) {
 
   const document = SwaggerModule.createDocument(app, options)
 
-  SwaggerModule.setup('/api/docs', app, document, {
+  SwaggerModule.setup('/api/auth/docs', app, document, {
     swaggerOptions: {
       displayOperationId: true,
     },

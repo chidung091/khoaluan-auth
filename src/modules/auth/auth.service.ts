@@ -29,6 +29,7 @@ export class AuthService {
           username,
         ),
       )
+      console.log(user)
       if (user === null) {
         return null
       }
@@ -56,8 +57,8 @@ export class AuthService {
     }
   }
 
-  public getJWTToken(userId: number, role: Role, name: string) {
-    const payload: TokenPayload = { userId, role, name }
+  public getJWTToken(userID: number, role: Role, name: string) {
+    const payload: TokenPayload = { userID, role, name }
     return this.jwtService.sign(payload)
   }
 
