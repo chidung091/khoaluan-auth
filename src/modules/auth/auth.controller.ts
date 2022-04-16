@@ -1,5 +1,6 @@
 import {
   Controller,
+  Get,
   HttpCode,
   Logger,
   Post,
@@ -31,6 +32,11 @@ export class AuthController {
       role: req.user.role,
     }
     return user
+  }
+
+  @Get('/test')
+  async get() {
+    return this.authService.testApi()
   }
   @MessagePattern({ role: 'auth', cmd: 'check' })
   async loggedIn(jwt: string) {
