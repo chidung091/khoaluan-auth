@@ -11,6 +11,7 @@ import {
   JWT_EXPIRATION_TIME,
   JWT_SECRET,
 } from 'src/config/secrets'
+import { HttpModule } from '@nestjs/axios'
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import {
       secret: JWT_SECRET,
       signOptions: { expiresIn: JWT_EXPIRATION_TIME },
     }),
+    HttpModule,
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy],
   controllers: [AuthController],

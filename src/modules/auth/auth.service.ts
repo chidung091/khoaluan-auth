@@ -12,6 +12,7 @@ import { firstValueFrom } from 'rxjs'
 import { Role } from './auth.enum'
 import { TokenPayload } from './entity/tokenpayload.entity'
 import { IDetailUser, ITeacher, IUser } from './auth.interface'
+import { HttpService } from '@nestjs/axios'
 
 @Injectable()
 export class AuthService {
@@ -19,8 +20,17 @@ export class AuthService {
     @Inject('USER_CLIENT')
     private readonly client: ClientProxy,
     private readonly jwtService: JwtService,
+    private httpService: HttpService,
   ) {}
 
+  async testApi() {
+    const response = await firstValueFrom(
+      this.httpService.get(
+        'http://api.lethanhhuyen.nvcd.xyz/api/training/users/test',
+      ),
+    )
+    return response.data
+  }
   async validateUser(username: string, password: string) {
     try {
       const user = await firstValueFrom(
