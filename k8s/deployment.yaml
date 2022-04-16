@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: thl-khoaluan-auth
+spec:
+  selector:
+    matchLabels:
+      app: thl-khoaluan-auth
+  replicas: 2    
+  template:
+    metadata:
+      labels:
+        app: thl-khoaluan-auth
+    spec:
+      containers:
+      - name: thl-khoaluan-auth
+        image: ghcr.io/chidung091/thl-khoaluan-auth:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3002
+        envFrom:
+          - secretRef:
+              name: thl-khoaluan-auth-secret
+              optional: false
+
