@@ -6,6 +6,8 @@ spec:
   selector:
     app: thl-khoaluan-qldrl
   ports:
-  - protocol: TCP
-    port: 3002
+    - port: 80
+      targetPort: 3002
+      protocol: TCP
+      name: http
   type: LoadBalancer
